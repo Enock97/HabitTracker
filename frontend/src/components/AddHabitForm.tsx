@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Stack, Button, Input } from '@mui/material';
+import { Button, Input, Stack } from '@mui/material';
 import { addHabit } from '../api/habits';
 
 interface Props {
