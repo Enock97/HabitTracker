@@ -4,11 +4,13 @@ A fullstack habit tracker built with **React**, **TypeScript**, and **Material U
 
 ## Features
 
-- Add, complete, and delete habits
+- Add, update, complete, and delete habits
+- Filtering and progression view
 - Persistent storage using SQLite
 - RESTful API built with FastAPI
-- Responsive UI with Material UI components
+- Modern and responsive UI with Material UI components
 - Type-safe codebase using TypeScript and SQLModel
+- Dark mode toggle
 
 ## Tech Stack
 
