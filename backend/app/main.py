@@ -2,8 +2,17 @@ from fastapi import FastAPI, HTTPException
 from .database import init_db
 from . import crud
 from .models import HabitCreate, HabitUpdate
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # or ["*"] for all
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 def startup_event():
