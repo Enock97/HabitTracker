@@ -1,0 +1,22 @@
+import axios from 'axios';
+import { Habit } from '../types';
+
+
+const API_URL = 'http://localhost:8000/habits';
+
+export const getHabits = async (): Promise<Habit[]> => {
+  const res = await axios.get<Habit[]>(API_URL);
+  return res.data;
+};
+
+export const addHabit = async (habit: { name: string }) => {
+  await axios.post(API_URL, habit);
+};
+
+export const deleteHabit = async (id: number) => {
+  await axios.delete(`${API_URL}/${id}`);
+};
+
+export const updateHabit = async (id: number, updates: Partial<{ name: string; completed: boolean }>) => {
+  await axios.put(`${API_URL}/${id}`, updates);
+};
