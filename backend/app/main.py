@@ -1,23 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from . import crud
 from .models import HabitCreate, HabitUpdate
-from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 
 app = FastAPI()
 
 handler = Mangum(app)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "https://habit-tracker-two-virid.vercel.app",
-        "http://localhost:3000"
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 @app.get("/habits")
 def read_habits():

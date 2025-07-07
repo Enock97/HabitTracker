@@ -10,15 +10,13 @@ provider:
         - https://habit-tracker-two-virid.vercel.app   # prod-frontend
         - http://localhost:3000                        # dev-frontend
       allowedMethods:
-        - OPTIONS
         - GET
         - POST
         - PUT
         - DELETE
       allowedHeaders:
         - Content-Type
-        - Authorization
-      allowCredentials: true
+      allowCredentials: false
   iam:
     role:
       statements:
