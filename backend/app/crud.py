@@ -24,47 +24,51 @@ def create_habit(habit):
     return item
 
 def update_habit(habit_id: str, habit_update: HabitUpdate):
+    # ── 1. make sure the habit exists ─────────────────────────────
     existing = table.get_item(Key={"id": habit_id})
     if "Item" not in existing:
         raise HTTPException(status_code=404, detail="Habit not found")
 
+    # ── 2. turn the PATCH payload into a dict, bail if empty ──────
     update_data = habit_update.dict(exclude_unset=True)
     if not update_data:
         raise HTTPException(status_code=400, detail="No fields to update")
 
-    update_fields = []
-    expression_values = {}
-    expression_names = {}
+    # ── 3. build UpdateExpression with alias for reserved words ───
+    update_fields      = []
+    expr_values        = {}
+    expr_names         = {}
 
     for key, value in update_data.items():
-        if key == "name":                       # ← reserved word
+        if key == "name":                       # Dynamo reserved word
             update_fields.append("#n = :name")
-            expression_names["#n"] = "name"
-            expression_values[":name"] = value
+            expr_names["#n"]  = "name"
+            expr_values[":name"] = value
         else:
             update_fields.append(f"{key} = :{key}")
-            expression_values[f":{key}"] = value
+            expr_values[f":{key}"] = value
 
     update_expression = "SET " + ", ".join(update_fields)
 
+    # ── 4. call DynamoDB ─────────────────────────────────────────
+    params = {
+        "Key": {"id": habit_id},
+        "UpdateExpression": update_expression,
+        "ExpressionAttributeValues": expr_values,
+        "ReturnValues": "ALL_NEW",
+    }
+    if expr_names:                       # only include when needed
+        params["ExpressionAttributeNames"] = expr_names
+
     try:
-        response = table.update_item(
-            Key={"id": habit_id},
-            UpdateExpression=update_expression,
-            ExpressionAttributeValues=expression_values,
-            ExpressionAttributeNames=expression_names or None,
-            ReturnValues="ALL_NEW"
-        )
+        response = table.update_item(**params)
         return response.get("Attributes")
     except Exception as e:
         print("UPDATE FAILED →", e)
         print("UpdateExpression:", update_expression)
-        print("ExpressionAttributeValues:", expression_values)
-        print("ExpressionAttributeNames:", expression_names)
+        print("ExpressionAttributeValues:", expr_values)
+        print("ExpressionAttributeNames:", expr_names)
         raise HTTPException(status_code=500, detail="Internal Server Error")
-
-
-
 
 def delete_habit(habit_id):
     response = table.delete_item(Key={"id": habit_id})
