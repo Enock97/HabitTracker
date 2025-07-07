@@ -36,10 +36,10 @@ export default function HabitList({ reloadTrigger }: Props) {
     fetchHabits();
   };
 
-  const handleDelete = async (id: number) => {
+    const handleDelete = async (id: string) => {
     await deleteHabit(id);
     fetchHabits();
-  };
+    };
 
   const handleEditClick = (habit: Habit) => {
     setEditingHabit(habit);
@@ -47,11 +47,14 @@ export default function HabitList({ reloadTrigger }: Props) {
   };
 
   const handleEditSave = async () => {
-    if (editingHabit && editedName.trim()) {
-      await updateHabit(editingHabit.id, { name: editedName });
-      setEditingHabit(null);
-      fetchHabits();
+    if (!editingHabit) return;
+    if (!editedName.trim() || editedName === editingHabit.name) {
+        setEditingHabit(null);
+        return;
     }
+    await updateHabit(editingHabit.id, { name: editedName });
+    setEditingHabit(null);
+    fetchHabits();
   };
 
   const filteredHabits = habits.filter((habit) => {

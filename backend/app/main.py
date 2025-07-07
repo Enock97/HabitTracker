@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from . import crud
-from .models import HabitCreate, HabitUpdate
+from .models import HabitCreate, HabitUpdate, Habit
 from mangum import Mangum
 from fastapi.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -37,12 +37,9 @@ def read_habit(habit_id: str):
 def create_habit(habit: HabitCreate):
     return crud.create_habit(habit)
 
-@app.put("/habits/{habit_id}")
+@app.put("/habits/{habit_id}", response_model=Habit)
 def update_habit(habit_id: str, habit: HabitUpdate):
-    updated = crud.update_habit(habit_id, habit)
-    if updated is None:
-        raise HTTPException(status_code=404, detail="Habit not found")
-    return updated
+    return crud.update_habit(habit_id, habit)
 
 @app.delete("/habits/{habit_id}")
 def delete_habit(habit_id: str):
