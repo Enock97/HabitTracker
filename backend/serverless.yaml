@@ -38,6 +38,10 @@ provider:
 plugins:
   - serverless-python-requirements
 
+package:
+  include:
+    - app/**
+
 custom:
   pythonRequirements:
     dockerizePip: true  
