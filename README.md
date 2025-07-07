@@ -28,7 +28,7 @@ Test the live application here:
 
 <br>
 
-Live application availability (YES/NO): **YES**
+Live application availability (YES/NO): **NO**
 
 ## Local Development Setup
 
