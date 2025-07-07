@@ -3,8 +3,11 @@ from .database import init_db
 from . import crud
 from .models import HabitCreate, HabitUpdate
 from fastapi.middleware.cors import CORSMiddleware
+from mangum import Mangum
 
 app = FastAPI()
+
+handler = Mangum(app)
 
 app.add_middleware(
     CORSMiddleware,
