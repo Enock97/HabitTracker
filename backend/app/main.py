@@ -1,5 +1,4 @@
 from fastapi import FastAPI, HTTPException
-from .database import init_db
 from . import crud
 from .models import HabitCreate, HabitUpdate
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,16 +16,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-def startup_event():
-    init_db()
-
 @app.get("/habits")
 def read_habits():
     return crud.get_habits()
 
 @app.get("/habits/{habit_id}")
-def read_habit(habit_id: int):
+def read_habit(habit_id: str):
     habit = crud.get_habit(habit_id)
     if habit is None:
         raise HTTPException(status_code=404, detail="Habit not found")
@@ -37,15 +32,19 @@ def create_habit(habit: HabitCreate):
     return crud.create_habit(habit)
 
 @app.put("/habits/{habit_id}")
-def update_habit(habit_id: int, habit: HabitUpdate):
+def update_habit(habit_id: str, habit: HabitUpdate):
     updated = crud.update_habit(habit_id, habit)
     if updated is None:
         raise HTTPException(status_code=404, detail="Habit not found")
     return updated
 
 @app.delete("/habits/{habit_id}")
-def delete_habit(habit_id: int):
+def delete_habit(habit_id: str):
     deleted = crud.delete_habit(habit_id)
     if deleted is None:
         raise HTTPException(status_code=404, detail="Habit not found")
     return {"detail": "Habit deleted"}
+
+@app.get("/")
+def root():
+    return {"msg": "Habit Tracker backend is live"}

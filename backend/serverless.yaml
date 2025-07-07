@@ -1,10 +1,35 @@
 service: habit-tracker
+
 provider:
   name: aws
-  runtime: python3.13
+  runtime: python3.11
   region: eu-north-1
+  httpApi:
+    cors: true
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:Scan
+          Resource:
+            - arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/Habits
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true  
+
 functions:
   api:
-    handler: main.handler
+    handler: app.main.handler     # app/main.py  →  handler = Mangum(app)
     events:
-      - httpApi: '*'
+      - httpApi:
+          path: /{proxy+}
+          method: ANY

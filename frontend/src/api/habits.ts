@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Habit } from '../types';
 
 
-const API_URL = 'http://localhost:8000/habits';
+const API_URL = 'https://pogv79s4w9.execute-api.eu-north-1.amazonaws.com/habits';
 
 export const getHabits = async (): Promise<Habit[]> => {
   const res = await axios.get<Habit[]>(API_URL);

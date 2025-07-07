@@ -6,20 +6,32 @@ A fullstack habit tracker built with **React**, **TypeScript**, and **Material U
 
 - Add, update, complete, and delete habits
 - Filtering and progression view
-- Persistent storage using SQLite
+- Persistent storage
 - RESTful API built with FastAPI
 - Modern and responsive UI with Material UI components
 - Type-safe codebase using TypeScript and SQLModel
 - Dark mode toggle
+- Front-end deployed to Vercel and back-end to AWS
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Material UI
-- **Backend:** FastAPI, SQLModel, SQLite
+- **Front-end:** React, TypeScript, Material UI
+- **Back-end:** Python (FastAPI)
 - **API Docs:** Auto-generated with OpenAPI (Swagger UI)
+- **Cloud & DevOps:** AWS (Lambda, DynamoDB & CloudFormation), Vercel
 - **Tools:** VS Code, YouTube (freeCodeCamp.org), GPT-4
 
-## Getting Started
+## Try the App
+
+Test the live application here: 
+- **[Live App (Vercel)🚀](https://habit-tracker-two-virid.vercel.app/)**
+- **[API Check (AWS)🛠️](https://pogv79s4w9.execute-api.eu-north-1.amazonaws.com/)**
+
+<br>
+
+Live application availability (YES/NO): **YES**
+
+## Local Development Setup
 
 ### 1. Clone the repository
 

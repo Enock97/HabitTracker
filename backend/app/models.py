@@ -1,16 +1,9 @@
-from sqlmodel import SQLModel, Field
+from pydantic import BaseModel
 from typing import Optional
-from datetime import date
 
-class Habit(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
-    created_at: date = Field(default_factory=date.today)
-    completed: bool = False
-
-class HabitCreate(SQLModel):
+class HabitCreate(BaseModel):
     name: str
 
-class HabitUpdate(SQLModel):
+class HabitUpdate(BaseModel):
     name: Optional[str] = None
     completed: Optional[bool] = None
