@@ -1,0 +1,10 @@
+service: habit-tracker
+provider:
+  name: aws
+  runtime: python3.13
+  region: eu-north-1
+functions:
+  api:
+    handler: main.handler
+    events:
+      - httpApi: '*'
