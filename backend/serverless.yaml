@@ -14,8 +14,13 @@ provider:
         - POST
         - PUT
         - DELETE
-      allowedHeaders:
-        - Content-Type
+        - OPTIONS         
+      allowedHeaders:     
+       - Content-Type
+       - Authorization
+       - X-Amz-Date
+       - X-Api-Key
+       - X-Amz-Security-Token
       allowCredentials: false
   iam:
     role:
