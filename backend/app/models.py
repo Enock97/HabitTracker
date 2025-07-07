@@ -1,6 +1,11 @@
 from pydantic import BaseModel
 from typing import Optional
 
+class Habit(BaseModel):
+    id: str
+    name: str
+    completed: bool
+
 class HabitCreate(BaseModel):
     name: str
 

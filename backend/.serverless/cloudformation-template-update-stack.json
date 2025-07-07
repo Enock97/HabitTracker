@@ -173,7 +173,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/habit-tracker/dev/1751867579966-2025-07-07T05:52:59.966Z/habit-tracker.zip"
+          "S3Key": "serverless/habit-tracker/dev/1751879695475-2025-07-07T09:14:55.475Z/habit-tracker.zip"
         },
         "Handler": "app.main.handler",
         "Runtime": "python3.11",
@@ -191,14 +191,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionWlolSvE35gQ2jGW8VWvNGqJaNIL4eFHSrIZAgXwfqM": {
+    "ApiLambdaVersionJeKbaoQSYG8Q8Tjwk2aVd1KcaOZ4vEeCSWd2bkLc0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "8DvdFoEvA6PvybDRfM2nfO99uMFIqPFvB+ye315O1BA="
+        "CodeSha256": "v6QSlzn9S+qOOR6XYqwJ0OzWq3P8G4V7QVphMUG5zlk="
       }
     },
     "HttpApi": {
@@ -209,24 +209,21 @@
         "CorsConfiguration": {
           "AllowHeaders": [
             "Content-Type",
-            "X-Amz-Date",
             "Authorization",
+            "X-Amz-Date",
             "X-Api-Key",
-            "X-Amz-Security-Token",
-            "X-Amz-User-Agent",
-            "X-Amzn-Trace-Id"
+            "X-Amz-Security-Token"
           ],
           "AllowMethods": [
-            "OPTIONS",
             "GET",
             "POST",
             "PUT",
-            "PATCH",
-            "HEAD",
-            "DELETE"
+            "DELETE",
+            "OPTIONS"
           ],
           "AllowOrigins": [
-            "*"
+            "https://habit-tracker-two-virid.vercel.app",
+            "http://localhost:3000"
           ]
         }
       }
@@ -332,7 +329,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionWlolSvE35gQ2jGW8VWvNGqJaNIL4eFHSrIZAgXwfqM"
+        "Ref": "ApiLambdaVersionJeKbaoQSYG8Q8Tjwk2aVd1KcaOZ4vEeCSWd2bkLc0"
       },
       "Export": {
         "Name": "sls-habit-tracker-dev-ApiLambdaFunctionQualifiedArn"
