@@ -1,6 +1,6 @@
 # Habit Tracker
 
-A responsive intermediate-level full-stack habit tracking application built with a **React + Material UI frontend (Vercel)** and a **Python FastAPI backend (AWS Lambda + DynamoDB)** for the purpose of learning fullstack React + Python and deployment to AWS.
+A responsive intermediate-level full-stack habit tracking application MVP built with a **React + Material UI frontend (Vercel)** and a **Python FastAPI backend (AWS Lambda + DynamoDB)** for the purpose of learning fullstack React + Python and deployment to AWS.
 
 ## Features
 
