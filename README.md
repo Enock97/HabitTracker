@@ -1,31 +1,30 @@
 # Habit Tracker
 
-A fullstack habit tracker built with **React**, **TypeScript**, and **Material UI** on the frontend, and **FastAPI** with **SQLite** on the backend.
+A responsive intermediate-level full-stack habit tracking application built with a **React + Material UI frontend (Vercel)** and a **Python FastAPI backend (AWS Lambda + DynamoDB)** for the purpose of learning fullstack React + Python and deployment to AWS.
 
 ## Features
 
-- Add, update, complete, and delete habits
-- Filtering and progression view
-- Persistent storage
-- RESTful API built with FastAPI
-- Modern and responsive UI with Material UI components
-- Type-safe codebase using TypeScript and SQLModel
-- Dark mode toggle
-- Front-end deployed to Vercel and back-end to AWS
+- Track daily habits with create, read, update, and delete (CRUD) functionality
+- Real-time UI updates and smooth user experience with dark mode toggle
+- Serverless backend with FastAPI, deployed to AWS Lambda using the Serverless Framework
+- Persistent data storage in AWS DynamoDB
+- Frontend deployed on Vercel with full CORS integration
+- Clean, intuitive interface and scalable architecture
 
 ## Tech Stack
 
 - **Front-end:** React, TypeScript, Material UI
-- **Back-end:** Python (FastAPI)
+- **Back-end:** Python using FastAPI + Mangum (AWS Lambda)
+- **Database:** AWS DynamoDB (NoSQL)
 - **API Docs:** Auto-generated with OpenAPI (Swagger UI)
-- **Cloud & DevOps:** AWS (Lambda, DynamoDB & CloudFormation), Vercel
+- **Cloud & DevOps:** AWS (CloudFormation), Vercel
 - **Tools:** VS Code, YouTube (freeCodeCamp.org), GPT-4
 
 ## Try the App
 
 Test the live application here: 
-- **[Live App (Vercel)🚀](https://habit-tracker-two-virid.vercel.app/)**
-- **[API Check (AWS)🛠️](https://pogv79s4w9.execute-api.eu-north-1.amazonaws.com/)**
+- **[Live App (Vercel)](https://habit-tracker-two-virid.vercel.app/)**
+- **[API Check (AWS)](https://pogv79s4w9.execute-api.eu-north-1.amazonaws.com/)**
 
 <br>
 
@@ -37,7 +36,6 @@ Live application availability (YES/NO): **YES**
 
 ```bash
 git clone https://github.com/your-username/habit-tracker.git
-cd habit-tracker
 ```
 
 ### 2. Install dependencies
