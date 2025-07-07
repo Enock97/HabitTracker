@@ -29,13 +29,15 @@ def update_habit(habit_id: str, habit_update: HabitUpdate):
         raise HTTPException(status_code=404, detail="Habit not found")
 
     update_data = habit_update.dict(exclude_unset=True)
+    if not update_data:
+        raise HTTPException(status_code=400, detail="No fields to update")
 
     update_fields = []
     expression_values = {}
     expression_names = {}
 
     for key, value in update_data.items():
-        if key == "name":
+        if key == "name":                       # ← reserved word
             update_fields.append("#n = :name")
             expression_names["#n"] = "name"
             expression_values[":name"] = value
@@ -45,15 +47,22 @@ def update_habit(habit_id: str, habit_update: HabitUpdate):
 
     update_expression = "SET " + ", ".join(update_fields)
 
-    response = table.update_item(
-        Key={"id": habit_id},
-        UpdateExpression=update_expression,
-        ExpressionAttributeValues=expression_values,
-        ExpressionAttributeNames=expression_names if expression_names else None,
-        ReturnValues="ALL_NEW"
-    )
+    try:
+        response = table.update_item(
+            Key={"id": habit_id},
+            UpdateExpression=update_expression,
+            ExpressionAttributeValues=expression_values,
+            ExpressionAttributeNames=expression_names or None,
+            ReturnValues="ALL_NEW"
+        )
+        return response.get("Attributes")
+    except Exception as e:
+        print("UPDATE FAILED →", e)
+        print("UpdateExpression:", update_expression)
+        print("ExpressionAttributeValues:", expression_values)
+        print("ExpressionAttributeNames:", expression_names)
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
-    return response.get("Attributes")
 
 
 
