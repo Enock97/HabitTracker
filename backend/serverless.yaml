@@ -5,7 +5,20 @@ provider:
   runtime: python3.11
   region: eu-north-1
   httpApi:
-    cors: true
+    cors:
+      allowedOrigins:
+        - https://habit-tracker-two-virid.vercel.app   # prod-frontend
+        - http://localhost:3000                        # dev-frontend
+      allowedMethods:
+        - OPTIONS
+        - GET
+        - POST
+        - PUT
+        - DELETE
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      allowCredentials: true
   iam:
     role:
       statements:
