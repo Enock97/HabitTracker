@@ -3,19 +3,24 @@ from . import crud
 from .models import HabitCreate, HabitUpdate
 from mangum import Mangum
 from fastapi.responses import Response
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",                      # local dev
+    "https://habit-tracker-two-virid.vercel.app", # prod site
+]
+
+app.add_middleware(
+     CORSMiddleware,
+     allow_origins=origins,
+     allow_credentials=True,
+     allow_methods=["*"],       # GET, POST, PUT, DELETE, OPTIONS …
+     allow_headers=["*"],       # Accept, Content-Type, Authorization …
+)
+
 handler = Mangum(app)
-
-@app.options("/habits")
-def options_habits():
-    return Response(status_code=200)
-
-@app.options("/habits/{habit_id}")
-def options_habit_id(habit_id: str):
-    return Response(status_code=200)
 
 @app.get("/habits")
 def read_habits():
