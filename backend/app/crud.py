@@ -1,5 +1,7 @@
 import boto3
 import uuid
+from fastapi import HTTPException
+from .models import HabitUpdate
 
 dynamodb = boto3.resource("dynamodb")
 table = dynamodb.Table("Habits")
@@ -22,8 +24,6 @@ def create_habit(habit):
     return item
 
 def update_habit(habit_id: str, habit_update: HabitUpdate):
-    table = get_habit_table()
-
     existing = table.get_item(Key={"id": habit_id})
     if "Item" not in existing:
         raise HTTPException(status_code=404, detail="Habit not found")
