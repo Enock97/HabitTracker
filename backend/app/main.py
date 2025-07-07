@@ -2,10 +2,20 @@ from fastapi import FastAPI, HTTPException
 from . import crud
 from .models import HabitCreate, HabitUpdate
 from mangum import Mangum
+from fastapi.responses import Response
+
 
 app = FastAPI()
 
 handler = Mangum(app)
+
+@app.options("/habits")
+def options_habits():
+    return Response(status_code=200)
+
+@app.options("/habits/{habit_id}")
+def options_habit_id(habit_id: str):
+    return Response(status_code=200)
 
 @app.get("/habits")
 def read_habits():
