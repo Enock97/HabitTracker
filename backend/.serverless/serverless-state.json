@@ -217,7 +217,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/habit-tracker/dev/1751879695475-2025-07-07T09:14:55.475Z/habit-tracker.zip"
+                "S3Key": "serverless/habit-tracker/dev/1751884641437-2025-07-07T10:37:21.437Z/habit-tracker.zip"
               },
               "Handler": "app.main.handler",
               "Runtime": "python3.11",
@@ -235,14 +235,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionJeKbaoQSYG8Q8Tjwk2aVd1KcaOZ4vEeCSWd2bkLc0": {
+          "ApiLambdaVersionwwl1a755hG1rMcYrlzNng9jT8AOzyhmxrMCebQXgM0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "v6QSlzn9S+qOOR6XYqwJ0OzWq3P8G4V7QVphMUG5zlk="
+              "CodeSha256": "80hXHRs7VsbYRpnE8bZ7VKNVaGP4p6WX+C5+JTvw4eI="
             }
           },
           "HttpApi": {
@@ -370,7 +370,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionJeKbaoQSYG8Q8Tjwk2aVd1KcaOZ4vEeCSWd2bkLc0"
+              "Ref": "ApiLambdaVersionwwl1a755hG1rMcYrlzNng9jT8AOzyhmxrMCebQXgM0"
             },
             "Export": {
               "Name": "sls-habit-tracker-dev-ApiLambdaFunctionQualifiedArn"
@@ -524,7 +524,7 @@
         "timeout": 6,
         "runtime": "python3.11",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionJeKbaoQSYG8Q8Tjwk2aVd1KcaOZ4vEeCSWd2bkLc0"
+        "versionLogicalId": "ApiLambdaVersionwwl1a755hG1rMcYrlzNng9jT8AOzyhmxrMCebQXgM0"
       }
     },
     "configValidationMode": "warn",
@@ -536,6 +536,14 @@
       },
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
+      },
+      "package": {
+        "include": [
+          "app/**"
+        ],
+        "artifactsS3KeyDirname": "serverless/habit-tracker/dev/code-artifacts",
+        "artifact": "C:\\Users\\enock\\source\\repos\\VSCode Projects\\HabitTracker\\backend\\.serverless\\habit-tracker.zip",
+        "artifactDirectoryName": "serverless/habit-tracker/dev/1751884641437-2025-07-07T10:37:21.437Z"
       },
       "custom": {
         "$ref": "$[\"service\"][\"custom\"]"
@@ -549,7 +557,7 @@
     "artifact": "C:\\Users\\enock\\source\\repos\\VSCode Projects\\HabitTracker\\backend\\.serverless\\habit-tracker.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/habit-tracker/dev/1751879695475-2025-07-07T09:14:55.475Z",
+    "artifactDirectoryName": "serverless/habit-tracker/dev/1751884641437-2025-07-07T10:37:21.437Z",
     "artifact": "habit-tracker.zip"
   }
 }
